@@ -25,7 +25,7 @@ fn main() {
         io::stdin().read_line(&mut guess)
           .expect("Failed to read line");
 
-        // parse() 返回的Result类型有两种
+        // parse() 返回Result类型, Result类型有两种结果 => Ok, Err
         // Ok => 解析成功
         // Err => 解析错误
         let guess: u32 = match guess.trim().parse() {

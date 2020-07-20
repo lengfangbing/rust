@@ -27,4 +27,14 @@ fn main() {
     let arrWithType: [i64; 4] = [1, 2, 3, -4];
     // 可以这样声明每一个元素都相同的数组
     let sameValArr = [3; 5]; // 长度为5, 每个元素值都是3
+    // 函数调用
+    let x = plus_one(5);
+}
+
+// -> 箭头后声明类型
+// 函数的返回值等于函数体最后一个表达式的值
+fn plus_one (num: i32) -> i32 {
+  // 也可以使用显示return
+  // return num + 1;
+  num + 1
 }
