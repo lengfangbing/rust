@@ -1,6 +1,7 @@
 // const 定义常量 必须标注类型
 const MAX_POINTS: u32 = 100_000;
 const MIN_POINTS: i32 = -100_000;
+
 fn main() {
     // mut 可变变量
     let mut x = "冷方冰";
@@ -26,15 +27,16 @@ fn main() {
     // 数组声明类型, 第一个表示类型, 第二个表示长度
     let arrWithType: [i64; 4] = [1, 2, 3, -4];
     // 可以这样声明每一个元素都相同的数组
-    let sameValArr = [3; 5]; // 长度为5, 每个元素值都是3
+    let sameValArr = [3; 5];
+    // 长度为5, 每个元素值都是3
     // 函数调用
     let x = plus_one(5);
 }
 
 // -> 箭头后声明类型
 // 函数的返回值等于函数体最后一个表达式的值
-fn plus_one (num: i32) -> i32 {
-  // 也可以使用显示return
-  // return num + 1;
-  num + 1
+fn plus_one(num: i32) -> i32 {
+    // 也可以使用显示return
+    // return num + 1;
+    num + 1
 }
