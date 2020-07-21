@@ -25,9 +25,9 @@ fn main() {
     // 可变数组建议使用vector
     let arr = [1, 2, 3, 4];
     // 数组声明类型, 第一个表示类型, 第二个表示长度
-    let arrWithType: [i64; 4] = [1, 2, 3, -4];
+    let arr_with_type: [i64; 4] = [1, 2, 3, -4];
     // 可以这样声明每一个元素都相同的数组
-    let sameValArr = [3; 5];
+    let same_val_arr = [3; 5];
     // 长度为5, 每个元素值都是3
     // 函数调用
     let x = plus_one(5);
