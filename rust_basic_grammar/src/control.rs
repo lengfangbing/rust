@@ -23,13 +23,13 @@ fn loop_fn() {
 
 fn loop_break() {
     let mut x = 0;
-    let result = loop {
+    let res = loop {
         x += 1;
         if x == 10 {
             break x;
         }
     };
-    println!("x is {} now", x)
+    println!("x is {} now", res)
 }
 
 fn while_fn() {
@@ -40,14 +40,14 @@ fn while_fn() {
     println!("flag is {} now", flag);
 }
 
-fn for_fn() {
+pub fn for_fn() {
     // for loop 更为安全, 因为while需要手动维护index(flag), 如果出现数组索引越界, 代码将会panic
-    let mut res = String::new();
+    let mut res = String::from("str: ");
     let arr: [&str; 5] = ["10", "20", "30", "40", "50"];
     for element in arr.iter() {
-        res += element.trim();
+        res += element;
     }
-    println!("the string plus result is {}", res)
+    println!("the string plus result is \n{}", res)
 }
 
 fn for_demo () {
