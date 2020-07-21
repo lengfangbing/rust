@@ -12,5 +12,7 @@ mod memory;
 mod reference;
 fn main() {
     println!("rust grammar");
-    control::for_fn();
+    // control::for_fn();
+    // reference::reference();
+    reference::slice();
 }
