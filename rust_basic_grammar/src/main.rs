@@ -10,9 +10,14 @@ mod string;
 mod memory;
 // 引用
 mod reference;
+// 结构体
+mod structs;
 fn main() {
     println!("rust grammar");
     // control::for_fn();
     // reference::reference();
-    reference::slice();
+    // reference::slice();
+    // structs::define_struct();
+    structs::structs_demo();
 }
+

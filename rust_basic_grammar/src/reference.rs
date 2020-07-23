@@ -66,6 +66,7 @@ pub fn slice() {
     println!("{}", h);
     s = String::new();
 }
+
 fn first_word(s: &str) -> &str {
     let bytes = s.as_bytes();
 
