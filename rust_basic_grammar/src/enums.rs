@@ -16,7 +16,7 @@ enum ShopBanned {
 struct VerifyData {
     product_id: String,
     shop_banned: ShopBanned,
-    reject_reason: i64,
+    reject_reason: RejectReason,
     ip: IpAddrTest,
 }
 
@@ -24,20 +24,19 @@ impl VerifyData {
     fn print_addr (&self) {
         println!("{}", self.product_id);
     }
-    fn print_reason (&self) {
-        println!("{}", self.reject_reason);
+    fn get_shop_banned_reason (&self) -> i64 {
+        match self.shop_banned {
+            ShopBanned::NoBan => 0,
+            ShopBanned::Ban => 1,
+        }
     }
-}
-
-// 通过match得到枚举对应的值
-fn get_reject_reason_value (target: &RejectReason) -> i64{
-    match target {
-        RejectReason::NoBan => 0,
-        RejectReason::ManyViolation => 1,
-        RejectReason::SaleFakeProduct => 2,
-        RejectReason::Other => 3,
-        // 对应switch的default
-        _ => -1,
+    fn get_reject_reason_value (&self) -> i64 {
+        match self.reject_reason {
+            RejectReason::NoBan => 0,
+            RejectReason::ManyViolation => 1,
+            RejectReason::SaleFakeProduct => 2,
+            RejectReason::Other => 3,
+        }
     }
 }
 
@@ -45,19 +44,21 @@ pub fn verify_func (id: &str) -> bool {
     let product_v4 = VerifyData {
         product_id: id.to_owned(),
         shop_banned: ShopBanned::NoBan,
-        reject_reason: get_reject_reason_value(&RejectReason::NoBan),
+        reject_reason: RejectReason::NoBan,
         ip: IpAddrTest::V4(10, 92, 238, 191),
     };
     let product_v6 = VerifyData {
         product_id: id.to_owned(),
         shop_banned: ShopBanned::Ban,
-        reject_reason: get_reject_reason_value(&RejectReason::SaleFakeProduct),
+        reject_reason: RejectReason::SaleFakeProduct,
         ip: IpAddrTest::V6("::1".to_string()),
     };
     product_v4.print_addr();
     product_v6.print_addr();
-    product_v4.print_reason();
-    product_v6.print_reason();
+    println!("v4 reject reason: {}", product_v4.get_reject_reason_value());
+    println!("v6 reject reason: {}", product_v6.get_reject_reason_value());
+    println!("v4 shop banned reason: {}", product_v4.get_shop_banned_reason());
+    println!("v6 shop banned reason: {}", product_v6.get_shop_banned_reason());
     true
 }
 

@@ -22,7 +22,7 @@ fn main() {
     // reference::slice();
     // structs::define_struct();
     // structs::get_comp_email();
-    // enums::verify_func("2016207235");
-    enums::options_test();
+    enums::verify_func("2016207235");
+    // enums::options_test();
 }
 
