@@ -63,7 +63,18 @@ pub fn verify_func (id: &str) -> bool {
 
 pub fn options_test () {
     let a = "32";
+    // Rust提供的可直接用的枚举
     let b: Option<&str> = Some("10");
+    let c: Result<i64, i64> = Ok(10);
+    if let Ok(20) = c {
+        println!("c is not equals 20");
+    } else {
+        println!("c is {}", c.unwrap());
+    }
+    if c.unwrap() == 10 {
+        println!("You guess right: c is 10~");
+    }
+    println!("{}", c.unwrap());
     // 获取Some的值, 如果为空就给个默认值
     let add = a.to_owned() + b.unwrap_or("20");
     println!("{}", add);
