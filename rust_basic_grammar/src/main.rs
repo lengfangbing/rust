@@ -12,6 +12,8 @@ mod memory;
 mod reference;
 // 结构体
 mod structs;
+// 枚举
+mod enums;
 
 fn main() {
     println!("rust grammar");
@@ -19,7 +21,8 @@ fn main() {
     // reference::reference();
     // reference::slice();
     // structs::define_struct();
-    let email = structs::get_comp_email();
-    println!("{}", email);
+    // structs::get_comp_email();
+    // enums::verify_func("2016207235");
+    enums::options_test();
 }
 
