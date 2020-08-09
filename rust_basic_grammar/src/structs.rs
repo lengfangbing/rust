@@ -4,6 +4,21 @@ struct User {
     count: i64,
     active: bool,
 }
+impl User {
+    fn email (&self) -> String {
+        String::from(self.email.to_owned() + "@bytedance.com")
+    }
+}
+
+pub fn get_comp_email () -> String{
+    let user = User {
+        name: "lengfangbing".to_owned(),
+        email: "lengfangbing".to_owned(),
+        count: 22,
+        active: true,
+    };
+    user.email()
+}
 
 pub fn define_struct() {
     let mut user = User {

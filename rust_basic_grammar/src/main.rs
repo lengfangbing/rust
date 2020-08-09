@@ -12,12 +12,14 @@ mod memory;
 mod reference;
 // 结构体
 mod structs;
+
 fn main() {
     println!("rust grammar");
     // control::for_fn();
     // reference::reference();
     // reference::slice();
     // structs::define_struct();
-    structs::structs_demo();
+    let email = structs::get_comp_email();
+    println!("{}", email);
 }
 
