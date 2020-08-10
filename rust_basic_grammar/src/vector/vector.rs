@@ -1,5 +1,3 @@
-use crate::vector::vector::Reject::RejectReason;
-
 #[derive(Debug)]
 enum Reject {
     RejectReason(u8),

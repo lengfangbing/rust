@@ -22,6 +22,6 @@ use vector::vector::vector_enum;
 
 fn main() {
     println!("rust grammar");
-    vector_enum();
+    string::string::string_byte();
 }
 
