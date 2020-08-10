@@ -1,28 +1,24 @@
-// 控制流
-mod control;
-// 数组
+// 使用模块的示例
+use std::{cmp::Ordering, collections::HashMap};
+use std::io::{self, Write};
+// 不推荐使用, 因为这样Rust并不能推导出当前作用域代码所使用的库等
+use std::fmt::*;
+
+// 使用自己的模块示例
 mod array;
-// 元组
-mod object;
-// 字符串
-mod string;
-// 内存控制
-mod memory;
-// 引用
-mod reference;
-// 结构体
-mod structs;
-// 枚举
+mod control;
 mod enums;
+mod memory;
+mod object;
+mod reference;
+mod string;
+mod structs;
+
+// 可以用use使用已经定义的mod模块
+use array::create_array::create_array;
+use structs::structs::structs_demo;
 
 fn main() {
     println!("rust grammar");
-    // control::for_fn();
-    // reference::reference();
-    // reference::slice();
-    // structs::define_struct();
-    // structs::get_comp_email();
-    enums::verify_func("2016207235");
-    // enums::options_test();
 }
 
