@@ -3,16 +3,19 @@ enum IpAddrTest {
     V4(u8, u8, u8, u8),
     V6(String),
 }
+
 enum RejectReason {
     NoBan,
     SaleFakeProduct,
     ManyViolation,
     Other,
 }
+
 enum ShopBanned {
     Ban,
     NoBan,
 }
+
 struct VerifyData {
     product_id: String,
     shop_banned: ShopBanned,
@@ -21,26 +24,25 @@ struct VerifyData {
 }
 
 impl VerifyData {
-    fn print_addr (&self) {
+    fn print_addr(&self) {
         println!("{}", self.product_id);
     }
-    fn get_shop_banned_reason (&self) -> i64 {
+    fn get_shop_banned_reason(&self) -> i64 {
         match self.shop_banned {
             ShopBanned::NoBan => 0,
             ShopBanned::Ban => 1,
         }
     }
-    fn get_reject_reason_value (&self) -> i64 {
+    fn get_reject_reason_value(&self) -> i64 {
         match self.reject_reason {
             RejectReason::NoBan => 0,
             RejectReason::ManyViolation => 1,
-            RejectReason::SaleFakeProduct => 2,
-            RejectReason::Other => 3,
+            RejectReason::SaleFakeProduct | RejectReason::Other => 2,
         }
     }
 }
 
-pub fn verify_func (id: &str) -> bool {
+pub fn verify_func(id: &str) -> bool {
     let product_v4 = VerifyData {
         product_id: id.to_owned(),
         shop_banned: ShopBanned::NoBan,
@@ -62,7 +64,7 @@ pub fn verify_func (id: &str) -> bool {
     true
 }
 
-pub fn options_test () {
+pub fn options_test() {
     let a = "32";
     // Rust提供的可直接用的枚举
     let b: Option<&str> = Some("10");
@@ -88,5 +90,4 @@ pub fn options_test () {
     if let Some("10") = b {
         println!("equals");
     }
-
 }
