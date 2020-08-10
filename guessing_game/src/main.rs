@@ -4,7 +4,7 @@ use std::io;
 use std::cmp::Ordering;
 use rand::Rng;
 
-// main 函数是程序的入口点
+// pic_check_main 函数是程序的入口点
 fn main() {
     let stable = rand::thread_rng().gen_range(1, 101);
     // 方法加上!表示这不是一个函数, 而是一个宏
