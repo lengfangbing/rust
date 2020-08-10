@@ -14,6 +14,7 @@ mod reference;
 mod string;
 mod structs;
 mod vector;
+mod map;
 
 // 可以用use使用已经定义的mod模块
 use array::create_array::create_array;
@@ -22,6 +23,6 @@ use vector::vector::vector_enum;
 
 fn main() {
     println!("rust grammar");
-    string::string::string_byte();
+    map::map::map_demo();
 }
 
