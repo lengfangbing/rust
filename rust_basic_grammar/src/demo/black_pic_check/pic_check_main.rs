@@ -26,7 +26,10 @@ pub fn start_verify_many(values: &Vec<HashMap<String, String>>) -> (HashMap<Stri
         } else {
             "no_ban".to_owned()
         };
-        map_value_increment(&mut res, increment_key, true);
+        let res = map_value_increment(&mut res, increment_key, true);
+        if res.is_none() {
+            println!("{:?} is invalid", i);
+        }
     }
     res
 }

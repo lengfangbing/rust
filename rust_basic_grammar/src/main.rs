@@ -41,5 +41,6 @@ fn main() {
     val.push(create_black_pic_map(2, 0));
     let res = pic_check_main::start_verify_many(&val);
     println!("{:#?}", res);
+    println!("{:?}", val);
 }
 
