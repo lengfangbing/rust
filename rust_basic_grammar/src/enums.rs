@@ -3,7 +3,6 @@ enum IpAddrTest {
     V4(u8, u8, u8, u8),
     V6(String),
 }
-
 enum RejectReason {
     NoBan,
     SaleFakeProduct,
@@ -21,6 +20,7 @@ struct VerifyData {
     shop_banned: ShopBanned,
     reject_reason: RejectReason,
     ip: IpAddrTest,
+    age: u8,
 }
 
 impl VerifyData {
@@ -40,6 +40,12 @@ impl VerifyData {
             RejectReason::SaleFakeProduct | RejectReason::Other => 2,
         }
     }
+    fn enum_age_value (&self) -> u32 {
+        match self.age {
+            1..=5 => 5,
+            _ => 0,
+        }
+    }
 }
 
 pub fn verify_func(id: &str) -> bool {
@@ -48,12 +54,14 @@ pub fn verify_func(id: &str) -> bool {
         shop_banned: ShopBanned::NoBan,
         reject_reason: RejectReason::NoBan,
         ip: IpAddrTest::V4(10, 92, 238, 191),
+        age: 20,
     };
     let product_v6 = VerifyData {
         product_id: id.to_owned(),
         shop_banned: ShopBanned::Ban,
         reject_reason: RejectReason::SaleFakeProduct,
         ip: IpAddrTest::V6("::1".to_string()),
+        age: 22,
     };
     product_v4.print_addr();
     product_v6.print_addr();
