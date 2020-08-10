@@ -13,12 +13,15 @@ mod object;
 mod reference;
 mod string;
 mod structs;
+mod vector;
 
 // 可以用use使用已经定义的mod模块
 use array::create_array::create_array;
 use structs::structs::structs_demo;
+use vector::vector::vector_enum;
 
 fn main() {
     println!("rust grammar");
+    vector_enum();
 }
 
