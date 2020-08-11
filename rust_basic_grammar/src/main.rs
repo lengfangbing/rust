@@ -20,8 +20,6 @@ mod generics_and_trait;
 
 mod demo;
 
-use demo::black_pic_check::pic_check_main;
-
 // 可以用use使用已经定义的mod模块
 use array::create_array::create_array;
 use structs::structs::structs_demo;
@@ -42,8 +40,7 @@ fn main() {
     val.push(create_black_pic_map(1, 2));
     val.push(create_black_pic_map(1, 3));
     val.push(create_black_pic_map(2, 0));
-    let res = pic_check_main::start_verify_many(&val);
+    let res = demo::start_verify_many(&val);
     println!("{:#?}", res);
     println!("{:?}", val);
 }
-
