@@ -1,0 +1,1 @@
+pub mod generics_and_trait;

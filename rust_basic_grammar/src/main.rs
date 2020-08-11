@@ -15,6 +15,9 @@ mod string;
 mod structs;
 mod vector;
 mod map;
+mod panic;
+mod generics_and_trait;
+
 mod demo;
 
 use demo::black_pic_check::pic_check_main;
