@@ -35,15 +35,21 @@ fn create_black_pic_map (shop_banned: u8, reject_reason: u8) -> HashMap<String, 
     res
 }
 
+fn test_demo_verify () -> HashMap<String, i64> {
+    let mut val = vec![];
+    val.push(create_black_pic_map(1, 1));
+    val.push(create_black_pic_map(1, 2));
+    val.push(create_black_pic_map(1, 3));
+    val.push(create_black_pic_map(2, 0));
+    demo::start_verify_many(&val)
+}
+
+fn test_actix_web_http () {
+    actix_http::start();
+}
+
 fn main() {
     println!("rust grammar");
-    // let mut val = vec![];
-    // val.push(create_black_pic_map(1, 1));
-    // val.push(create_black_pic_map(1, 2));
-    // val.push(create_black_pic_map(1, 3));
-    // val.push(create_black_pic_map(2, 0));
-    // let res = demo::start_verify_many(&val);
-    // println!("{:#?}", res);
-    // println!("{:?}", val);
-    actix_http::start();
+    println!("{:#?}", test_demo_verify());
+    test_actix_web_http();
 }

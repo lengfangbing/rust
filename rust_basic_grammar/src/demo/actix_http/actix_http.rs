@@ -4,10 +4,6 @@ async fn index() -> impl Responder {
     HttpResponse::Ok().body("Hello world!")
 }
 
-async fn index2() -> impl Responder {
-    HttpResponse::Ok().body("Hello world again!")
-}
-
 async fn hello(path: web::Path<String>) -> impl Responder {
     HttpResponse::Ok().body(format!("Hello {}!", &path))
 }
