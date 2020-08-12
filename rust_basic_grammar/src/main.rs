@@ -25,6 +25,8 @@ use array::create_array::create_array;
 use structs::structs::structs_demo;
 use vector::vector::vector_enum;
 
+use demo::actix_http::actix_http;
+
 fn create_black_pic_map (shop_banned: u8, reject_reason: u8) -> HashMap<String, String> {
     let mut res = HashMap::new();
     res.insert("product_id".to_owned(), "2016207235".to_owned());
@@ -35,12 +37,13 @@ fn create_black_pic_map (shop_banned: u8, reject_reason: u8) -> HashMap<String, 
 
 fn main() {
     println!("rust grammar");
-    let mut val = vec![];
-    val.push(create_black_pic_map(1, 1));
-    val.push(create_black_pic_map(1, 2));
-    val.push(create_black_pic_map(1, 3));
-    val.push(create_black_pic_map(2, 0));
-    let res = demo::start_verify_many(&val);
-    println!("{:#?}", res);
-    println!("{:?}", val);
+    // let mut val = vec![];
+    // val.push(create_black_pic_map(1, 1));
+    // val.push(create_black_pic_map(1, 2));
+    // val.push(create_black_pic_map(1, 3));
+    // val.push(create_black_pic_map(2, 0));
+    // let res = demo::start_verify_many(&val);
+    // println!("{:#?}", res);
+    // println!("{:?}", val);
+    actix_http::start();
 }
