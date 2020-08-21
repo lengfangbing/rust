@@ -1,11 +1,20 @@
-use actix_web::{web, App, HttpResponse, HttpServer, Responder};
+use actix_web::{web, App, HttpResponse, HttpServer, Responder, Result};
+use serde::{Deserialize, Serialize};
 
+#[derive(Serialize, Deserialize)]
+struct MyJson {
+    name: String,
+    age: i64,
+}
 async fn index() -> impl Responder {
     HttpResponse::Ok().body("Hello world!")
 }
 
-async fn hello(path: web::Path<String>) -> impl Responder {
-    HttpResponse::Ok().body(format!("Hello {}!", &path))
+async fn hello(path: web::Path<String>) -> Result<HttpResponse> {
+    Ok(HttpResponse::Ok().json(MyJson {
+        name: path.to_owned(),
+        age: 22,
+    }))
 }
 
 #[actix_rt::main]
