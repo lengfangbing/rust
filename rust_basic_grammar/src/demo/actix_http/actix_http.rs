@@ -6,6 +6,7 @@ struct MyJson {
     name: String,
     age: i64,
 }
+
 async fn index() -> impl Responder {
     HttpResponse::Ok().body("Hello world!")
 }
