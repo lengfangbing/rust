@@ -24,6 +24,7 @@ mod demo;
 use array::create_array::create_array;
 use structs::structs::structs_demo;
 use vector::vector::vector_enum;
+use demo::io_grep::io_grep;
 
 use demo::actix_http::actix_http;
 
@@ -52,5 +53,6 @@ fn main() {
     // println!("rust grammar");
     // println!("{:#?}", test_demo_verify());
     // test_actix_web_http();
-    generics_and_trait::life_time::test();
+    // generics_and_trait::life_time::test();
+    io_grep::start_io_grep();
 }

@@ -5,3 +5,5 @@ pub mod black_pic_check;
 pub use black_pic_check::pic_check_main::start_verify_many;
 
 pub mod actix_http;
+
+pub mod io_grep;
