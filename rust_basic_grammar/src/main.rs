@@ -49,7 +49,8 @@ fn test_actix_web_http () {
 }
 
 fn main() {
-    println!("rust grammar");
-    println!("{:#?}", test_demo_verify());
-    test_actix_web_http();
+    // println!("rust grammar");
+    // println!("{:#?}", test_demo_verify());
+    // test_actix_web_http();
+    generics_and_trait::life_time::test();
 }
