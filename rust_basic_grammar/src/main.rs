@@ -17,6 +17,7 @@ mod vector;
 mod map;
 mod panic;
 mod generics_and_trait;
+mod closures;
 
 mod demo;
 
@@ -54,5 +55,6 @@ fn main() {
     // println!("{:#?}", test_demo_verify());
     // test_actix_web_http();
     // generics_and_trait::life_time::test();
-    io_grep::start_io_grep();
+    // io_grep::start_io_grep();
+    closures::closures::test_closures();
 }
