@@ -40,6 +40,7 @@ fn longest_with_an_announcement<'a, T>(x: &'a str, y: &'a str, ann: T) -> &'a st
     println!("{}", ann);
     if x.len() > y.len() {
         x
+    } else {
+        y
     }
-    y
 }
