@@ -18,6 +18,7 @@ mod map;
 mod panic;
 mod generics_and_trait;
 mod closures;
+mod iterator;
 
 mod demo;
 
@@ -56,5 +57,6 @@ fn main() {
     // test_actix_web_http();
     // generics_and_trait::life_time::test();
     // io_grep::start_io_grep();
-    closures::closures::test_closures();
+    // closures::closures::test_closures();
+    iterator::iterator::test_iter();
 }
