@@ -1,6 +1,7 @@
 use std::{env, process};
 use std::fs;
 use std::error::Error;
+use std::time::Instant;
 
 
 #[derive(Debug)]
@@ -11,12 +12,18 @@ struct Config {
 }
 
 impl Config {
-    fn new(args: &[String]) -> Result<Config, &'static str> {
+    fn new(mut args: env::Args) -> Result<Config, &'static str> {
         if args.len() < 2 {
             Err("not enough arguments")
         } else {
-            let search = args[0].clone();
-            let filename = args[1].clone();
+            let search = args.next().unwrap_or_else(|| {
+                eprintln!("search is invalid");
+                process::exit(1);
+            });
+            let filename = args.next().unwrap_or_else(|| {
+                eprintln!("filename is invalid");
+                process::exit(1);
+            });
             let case_sensitive = env::var("CASE_SENSITIVE")
                 .is_err();
             Ok(Config {
@@ -28,10 +35,10 @@ impl Config {
     }
 }
 
-fn get_own_args() -> Vec<String> {
-    let mut vec: Vec<String> = env::args().collect();
-    vec.remove(0);
-    vec
+fn get_own_args() -> env::Args {
+    let mut args = env::args().into_iter();
+    args.next();
+    args
 }
 
 fn get_txt(filename: String) -> (bool, String) {
@@ -54,7 +61,8 @@ fn run(config: Config) -> Result<(), String> {
 }
 
 pub fn start_io_grep() {
-    let own_args = &get_own_args();
+    let now = Instant::now();
+    let mut own_args = get_own_args();
     let config = Config::new(own_args).unwrap_or_else(|err| {
         eprintln!("Problem invalid arguments {}", err);
         process::exit(1);
@@ -63,4 +71,5 @@ pub fn start_io_grep() {
         eprintln!("Application error: {}", err);
         process::exit(1);
     }
+    println!("{}", now.elapsed().as_micros());
 }
