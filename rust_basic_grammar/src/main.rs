@@ -31,6 +31,7 @@ use demo::io_grep::io_grep;
 use box_learn::deref_box_test;
 use box_learn::drop_box_test;
 use box_learn::rc_box_test;
+use box_learn::tree;
 
 use demo::actix_http::actix_http;
 
@@ -65,5 +66,6 @@ fn main() {
     // iterator::iterator::test_iter();
     // deref_box_test::test_box();
     // drop_box_test::test_drop();
-    rc_box_test::test_rc();
+    // rc_box_test::test_rc();
+    tree::tree_test();
 }
