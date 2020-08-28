@@ -30,6 +30,7 @@ use vector::vector::vector_enum;
 use demo::io_grep::io_grep;
 use box_learn::deref_box_test;
 use box_learn::drop_box_test;
+use box_learn::rc_box_test;
 
 use demo::actix_http::actix_http;
 
@@ -63,5 +64,6 @@ fn main() {
     // closures::closures::test_closures();
     // iterator::iterator::test_iter();
     // deref_box_test::test_box();
-    drop_box_test::test_drop();
+    // drop_box_test::test_drop();
+    rc_box_test::test_rc();
 }
