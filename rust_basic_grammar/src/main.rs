@@ -20,6 +20,7 @@ mod generics_and_trait;
 mod closures;
 mod iterator;
 mod box_learn;
+mod concurrent;
 
 mod demo;
 
@@ -32,6 +33,7 @@ use box_learn::deref_box_test;
 use box_learn::drop_box_test;
 use box_learn::rc_box_test;
 use box_learn::tree;
+use concurrent::thread;
 
 use demo::actix_http::actix_http;
 
@@ -67,5 +69,6 @@ fn main() {
     // deref_box_test::test_box();
     // drop_box_test::test_drop();
     // rc_box_test::test_rc();
-    tree::tree_test();
+    // tree::tree_test();
+    thread::thread_test();
 }
