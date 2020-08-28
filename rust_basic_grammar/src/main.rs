@@ -28,7 +28,7 @@ use array::create_array::create_array;
 use structs::structs::structs_demo;
 use vector::vector::vector_enum;
 use demo::io_grep::io_grep;
-use box_learn::box_test;
+use box_learn::deref_box_test;
 
 use demo::actix_http::actix_http;
 
@@ -61,5 +61,5 @@ fn main() {
     // io_grep::start_io_grep();
     // closures::closures::test_closures();
     // iterator::iterator::test_iter();
-    box_test::test_box();
+    deref_box_test::test_box();
 }
