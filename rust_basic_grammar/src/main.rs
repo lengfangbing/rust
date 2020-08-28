@@ -19,6 +19,7 @@ mod panic;
 mod generics_and_trait;
 mod closures;
 mod iterator;
+mod box_learn;
 
 mod demo;
 
@@ -27,6 +28,7 @@ use array::create_array::create_array;
 use structs::structs::structs_demo;
 use vector::vector::vector_enum;
 use demo::io_grep::io_grep;
+use box_learn::box_test;
 
 use demo::actix_http::actix_http;
 
@@ -56,7 +58,8 @@ fn main() {
     // println!("{:#?}", test_demo_verify());
     // test_actix_web_http();
     // generics_and_trait::life_time::test();
-    io_grep::start_io_grep();
+    // io_grep::start_io_grep();
     // closures::closures::test_closures();
     // iterator::iterator::test_iter();
+    box_test::test_box();
 }
