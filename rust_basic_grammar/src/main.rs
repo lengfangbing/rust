@@ -34,6 +34,7 @@ use box_learn::drop_box_test;
 use box_learn::rc_box_test;
 use box_learn::tree;
 use concurrent::thread;
+use concurrent::pass_message;
 
 use demo::actix_http::actix_http;
 
@@ -59,16 +60,6 @@ fn test_actix_web_http () {
 }
 
 fn main() {
-    // println!("rust grammar");
-    // println!("{:#?}", test_demo_verify());
-    // test_actix_web_http();
-    // generics_and_trait::life_time::test();
-    // io_grep::start_io_grep();
-    // closures::closures::test_closures();
-    // iterator::iterator::test_iter();
-    // deref_box_test::test_box();
-    // drop_box_test::test_drop();
-    // rc_box_test::test_rc();
-    // tree::tree_test();
-    thread::thread_test();
+    // thread::thread_test();
+    pass_message::message_test();
 }
