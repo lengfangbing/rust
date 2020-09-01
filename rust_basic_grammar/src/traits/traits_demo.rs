@@ -4,8 +4,8 @@
 trait Draw {
     // 安全的trait不应包含返回值是self和泛型参数
     fn draw(&self, str_from_parent: String);
-    fn print(&self, str: &str) {
-        println!("{}", str);
+    fn get_str<'a>(&self, str: &'a str) -> &'a str {
+        str
     }
 }
 
