@@ -21,6 +21,7 @@ mod closures;
 mod iterator;
 mod box_learn;
 mod concurrent;
+mod share_state;
 
 mod demo;
 
@@ -35,6 +36,7 @@ use box_learn::rc_box_test;
 use box_learn::tree;
 use concurrent::thread;
 use concurrent::pass_message;
+use share_state::state_share;
 
 use demo::actix_http::actix_http;
 
@@ -60,6 +62,5 @@ fn test_actix_web_http () {
 }
 
 fn main() {
-    // thread::thread_test();
-    pass_message::message_test();
+    state_share::test_state();
 }
