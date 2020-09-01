@@ -22,6 +22,7 @@ mod iterator;
 mod box_learn;
 mod concurrent;
 mod share_state;
+mod traits;
 
 mod demo;
 
@@ -37,6 +38,7 @@ use box_learn::tree;
 use concurrent::thread;
 use concurrent::pass_message;
 use share_state::state_share;
+use traits::traits_demo;
 
 use demo::actix_http::actix_http;
 
@@ -62,5 +64,5 @@ fn test_actix_web_http () {
 }
 
 fn main() {
-    state_share::test_state();
+    traits_demo::start();
 }
