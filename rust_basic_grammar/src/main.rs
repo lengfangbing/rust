@@ -23,6 +23,7 @@ mod box_learn;
 mod concurrent;
 mod share_state;
 mod traits;
+mod casting;
 
 mod demo;
 
@@ -64,5 +65,5 @@ fn test_actix_web_http () {
 }
 
 fn main() {
-    traits_demo::start();
+    casting::convert::start();
 }
