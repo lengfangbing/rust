@@ -1,3 +1,5 @@
+#![feature(proc_macro_hygiene, decl_macro)]
+#[macro_use] extern crate rocket;
 // 使用模块的示例
 use std::{cmp::Ordering, collections::HashMap};
 use std::io::{self, Write};
@@ -42,6 +44,7 @@ use share_state::state_share;
 use traits::traits_demo;
 
 use demo::actix_http::actix_http;
+use demo::rocket_http::rocket_http;
 
 fn create_black_pic_map (shop_banned: u8, reject_reason: u8) -> HashMap<String, String> {
     let mut res = HashMap::new();
@@ -64,6 +67,11 @@ fn test_actix_web_http () {
     actix_http::start();
 }
 
+fn test_rocket_http () {
+    rocket_http::start();
+}
+
 fn main() {
-    casting::convert::start();
+    // test_rocket_http();
+    test_actix_web_http();
 }
