@@ -2,9 +2,37 @@ use actix_web::{error, middleware, get, post, web, web::Bytes, App, HttpResponse
 use serde::{Deserialize, Serialize};
 use actix_multipart::Multipart;
 use futures::{StreamExt, TryStreamExt};
-use std::io::Write;
 use std::str;
+use std::collections::HashMap;
 
+#[derive(Debug)]
+struct MultipartHandler<T> {
+    body: HashMap<String, String>,
+    file: HashMap<String, T>,
+}
+
+async fn parse_multipart(mut payload: Multipart) -> MultipartHandler<Bytes> {
+    let mut body_map = HashMap::new();
+    let mut file_map = HashMap::new();
+    while let Ok(Some(mut field)) = payload.try_next().await {
+        let content_disposition = field.content_disposition().unwrap();
+        if let Some(name) = content_disposition.get_name() {
+            if let Some(_) = content_disposition.get_filename() {
+                while let Some(chunk) = field.next().await {
+                    file_map.insert(String::from(name), chunk.unwrap());
+                }
+                continue;
+            }
+            while let Some(chunks) = field.next().await {
+                body_map.insert(String::from(name), String::from(str::from_utf8(&*chunks.unwrap()).unwrap()));
+            }
+        }
+    }
+    MultipartHandler {
+        body: body_map,
+        file: file_map,
+    }
+}
 
 #[derive(Serialize, Deserialize)]
 struct MyJson {
@@ -78,27 +106,12 @@ async fn post_route_form(form: web::Form<FormEncoded>, info: web::Path<String>) 
 
 #[post("/{id}/login/form_data")]
 async fn post_route_form_data(mut payload: Multipart, info: web::Path<String>) -> Result<HttpResponse> {
-    let mut body: Vec<(String, String)> = vec![];
-    let mut file: Vec<(String, Bytes)> = vec![];
-    while let Ok(Some(mut field)) = payload.try_next().await {
-        let content_disposition = field.content_disposition().unwrap();
-        if let Some(name) = content_disposition.get_name() {
-            if let Some(_) = content_disposition.get_filename() {
-                while let Some(chunk) = field.next().await {
-                    file.push((String::from(name), chunk.unwrap()));
-                }
-                continue;
-            }
-            while let Some(chunks) = field.next().await {
-                body.push((String::from(name), String::from(str::from_utf8(&*chunks.unwrap()).unwrap())));
-            }
-        }
-    }
-    println!("{:?}", body);
-    println!("{:?}", file);
+    let value = parse_multipart(payload).await;
+    let body = value.body;
+    let file = value.file;
     Ok(HttpResponse::Ok().json(MyJsonHandle{
-        name: "form.0.name".to_owned(),
-        password: "form.0.password".to_owned(),
+        name: body.get("name").unwrap().to_string(),
+        password: body.get("password").unwrap().to_string(),
         id: info.to_owned(),
         _type: String::from("form_data"),
     }))
