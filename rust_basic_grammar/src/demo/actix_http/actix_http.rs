@@ -1,6 +1,7 @@
 use actix_web::{error, middleware, get, post, web, web::Bytes, App, HttpResponse, HttpServer, Responder, Result};
 use serde::{Deserialize, Serialize};
 use actix_multipart::Multipart;
+use futures::future::{ready, Ready};
 use futures::{StreamExt, TryStreamExt};
 use std::str;
 use std::collections::HashMap;
@@ -68,6 +69,7 @@ struct MyJsonHandle {
 
 #[get("/query")]
 async fn query_route(query: web::Query<MyQuery>) -> Result<HttpResponse> {
+    // query.0 == MyQuery
     Ok(HttpResponse::Ok().json(MyJsonHandle{
         name: query.0.name.to_string(),
         password: query.0.password.to_string(),
@@ -78,8 +80,9 @@ async fn query_route(query: web::Query<MyQuery>) -> Result<HttpResponse> {
 
 #[get("/{name}/{age}")]
 async fn dynamic_route(info: web::Path<(String, u8)>) -> Result<HttpResponse> {
+    let info = info.into_inner();
     Ok(HttpResponse::Ok().json(MyJson {
-        name: info.0.to_owned(),
+        name: info.0,
         age: info.1 as i64,
     }))
 }
@@ -122,7 +125,7 @@ async fn index() -> impl Responder {
     HttpResponse::Ok().body("Hello world!")
 }
 
-#[actix_rt::main]
+#[actix_web::main]
 pub async fn start() -> std::io::Result<()> {
     std::env::set_var("RUST_LOG", "actix_server=info,actix_web=info");
     HttpServer::new(|| {
