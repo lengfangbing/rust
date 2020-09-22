@@ -1,10 +1,11 @@
-use actix_web::{error, middleware, get, post, web, web::Bytes, App, HttpResponse, HttpServer, Responder, Result};
+use actix_web::{error, middleware::{Logger}, get, post, web, web::Bytes, App, HttpResponse, HttpServer, Responder, Result};
 use serde::{Deserialize, Serialize};
 use actix_multipart::Multipart;
 use futures::future::{ready, Ready};
 use futures::{StreamExt, TryStreamExt};
 use std::str;
 use std::collections::HashMap;
+use env_logger::Env;
 
 #[derive(Debug)]
 struct MultipartHandler<T> {
@@ -127,10 +128,10 @@ async fn index() -> impl Responder {
 
 #[actix_web::main]
 pub async fn start() -> std::io::Result<()> {
-    std::env::set_var("RUST_LOG", "actix_server=info,actix_web=info");
+    env_logger::from_env(Env::default().default_filter_or("info")).init();
     HttpServer::new(|| {
         App::new()
-            .wrap(middleware::Logger::default())
+            .wrap(Logger::default())
             .service(query_route)
             .service(index)
             .service(dynamic_route)
